@@ -2,6 +2,7 @@ package CONTROL;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.Collection;
@@ -26,14 +27,55 @@ public class Controllo implements ActionListener, ChangeListener, KeyListener{
 		f.getBtnInserisci().addActionListener(this);
 		f.getComboBox().addActionListener(this);
 		f.getTabbedPane().addChangeListener(this);
-		f.getTxtNum1().addKeyListener(this);
-		f.getTxtNum2().addKeyListener(this);
-		f.getTxtNum3().addKeyListener(this);
-		f.getTxtPrefix1().addKeyListener(this);
-		f.getTxtPrefix2().addKeyListener(this);
-		f.getTxtPrefix3().addKeyListener(this);
 		f.getBtnRic().addActionListener(this);
 		f.getBtnOrdina().addActionListener(this);
+		
+		
+		f.getTxtNum1().addKeyListener(new KeyAdapter() {
+			public void keyTyped(KeyEvent t1) {
+				if(f.getTxtNum1().getText().length() >= 7) {
+					t1.consume();
+				}
+			}
+		});
+		f.getTxtNum2().addKeyListener(new KeyAdapter() {
+			public void keyTyped(KeyEvent t2) {
+				if(f.getTxtNum2().getText().length() >= 7) {
+					t2.consume();
+				}
+			}
+		});
+		f.getTxtNum3().addKeyListener(new KeyAdapter() {
+			public void keyTyped(KeyEvent t3) {
+				if(f.getTxtNum3().getText().length() >= 7) {
+					t3.consume();
+				}
+			}
+		});
+		f.getTxtPrefix1().addKeyListener(new KeyAdapter() {
+			public void keyTyped(KeyEvent p1) {
+				if(f.getTxtPrefix1().getText().length() >= 3) {
+					p1.consume();
+				}
+			}
+		});
+		f.getTxtPrefix2().addKeyListener(new KeyAdapter() {
+			public void keyTyped(KeyEvent p2) {
+				if(f.getTxtPrefix2().getText().length() >= 3) {
+					p2.consume();
+				}
+			}
+		});
+		f.getTxtPrefix3().addKeyListener(new KeyAdapter() {
+			public void keyTyped(KeyEvent p3) {
+				if(f.getTxtPrefix3().getText().length() >= 3) {
+					p3.consume();
+				}
+			}
+		});
+		
+		
+		
 	}
 
 	@Override
@@ -105,6 +147,8 @@ public class Controllo implements ActionListener, ChangeListener, KeyListener{
 				Dottore d = new Dottore(nomeT,cognT,sessoT,specT,numT);
 				g.inserisci(d);
 			}
+			
+			cancella();
 			//System.out.println(g.stampa(0));
 		}
 		
@@ -189,41 +233,41 @@ public class Controllo implements ActionListener, ChangeListener, KeyListener{
 
 	@Override
 	public void keyTyped(KeyEvent arg0) {
-		// TODO Auto-generated method stub
-		
-		if(f.getTxtPrefix1().getText().length() >= 3){
-			arg0.consume();
-		}
-		
-		if(f.getTxtNum1().getText().length() >= 7){
-			arg0.consume();
-		}
-		
-		
-			
+		// TODO Auto-generated method stub	
 	}
 	
-	public void canc(){
+	
+	private void canc(){
 		f.getTxtCognome().setText("");
 	}
 	
-	public void vis1(boolean b) {
+	private void vis1(boolean b) {
 		f.getTxtPrefix1().setVisible(b);
 		f.getLblBarra1().setVisible(b);
 		f.getTxtNum1().setVisible(b);
 	}
 	
-	public void vis2(boolean b) {
+	private void vis2(boolean b) {
 		f.getTxtPrefix2().setVisible(b);
 		f.getLblBarra2().setVisible(b);
 		f.getTxtNum2().setVisible(b);
 	}
 	
-	public void vis3(boolean b) {
+	private void vis3(boolean b) {
 		f.getTxtPrefix3().setVisible(b);
 		f.getLblBarra3().setVisible(b);
 		f.getTxtNum3().setVisible(b);
 	}
 
-	
+	private void cancella() {
+		f.getTxtCognome().setText("");
+		f.getTxtNome().setText("");
+		f.getTxtSpec().setText("");
+		f.getTxtNum1().setText("");
+		f.getTxtNum2().setText("");
+		f.getTxtNum3().setText("");
+		f.getTxtPrefix1().setText("");
+		f.getTxtPrefix2().setText("");
+		f.getTxtPrefix3().setText("");
+	}
 }
