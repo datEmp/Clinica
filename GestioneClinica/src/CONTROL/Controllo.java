@@ -115,7 +115,7 @@ public class Controllo implements ActionListener, ChangeListener, KeyListener{
 				sessoT = "M";
 			}
 			
-			if((f.getTxtSpec().getText().length() >1) && err!= true) {
+			if(!(f.getTxtSpec().getText().length() >1) && err) {
 				specT = f.getTxtSpec().getText();
 			}else {
 				f.errore(2);
